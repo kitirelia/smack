@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		643418FF1F42E16700928A5E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643418FE1F42E16700928A5E /* AuthService.swift */; };
 		64BD8F5D1F41964600C6BCA9 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD8F5C1F41964600C6BCA9 /* ChatVC.swift */; };
 		64BD8F5F1F41965C00C6BCA9 /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BD8F5E1F41965C00C6BCA9 /* ChannelVC.swift */; };
 		64BD8F601F419A0D00C6BCA9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BD8F571F41918500C6BCA9 /* SWRevealViewController.m */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		643418FE1F42E16700928A5E /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		64BD8F561F41918400C6BCA9 /* Smack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smack-Bridging-Header.h"; sourceTree = "<group>"; };
 		64BD8F571F41918500C6BCA9 /* SWRevealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		64BD8F581F41918500C6BCA9 /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -54,6 +56,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		643418FD1F42E14E00928A5E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				643418FE1F42E16700928A5E /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		64BD8F551F41914000C6BCA9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +130,7 @@
 		64CB494A1F41898D00346935 /* Smack */ = {
 			isa = PBXGroup;
 			children = (
+				643418FD1F42E14E00928A5E /* Services */,
 				64BD8F631F42AB9B00C6BCA9 /* Utillieties */,
 				64BD8F5B1F41961700C6BCA9 /* View */,
 				64BD8F5A1F41960D00C6BCA9 /* Model */,
@@ -288,6 +299,7 @@
 				64BD8F5D1F41964600C6BCA9 /* ChatVC.swift in Sources */,
 				64BD8F5F1F41965C00C6BCA9 /* ChannelVC.swift in Sources */,
 				64BD8F691F42AE8800C6BCA9 /* CreateAccountVC.swift in Sources */,
+				643418FF1F42E16700928A5E /* AuthService.swift in Sources */,
 				64BD8F671F42ACD600C6BCA9 /* LoginVC.swift in Sources */,
 				64BD8F621F429F8A00C6BCA9 /* GradientView.swift in Sources */,
 				64CB494C1F41898D00346935 /* AppDelegate.swift in Sources */,
