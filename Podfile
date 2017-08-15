@@ -10,5 +10,5 @@ target 'Smack' do
     pod 'Alamofire'
     pod 'SwiftyJSON'
     pod 'Socket.IO-Client-Swift'
-
+    
 end

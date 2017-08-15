@@ -50,7 +50,7 @@ class AuthService{
             "Content-Type" : "application/json; charset = utf-8",
         ]
         let body:[String:Any] = [
-            "email":email,
+            "email":lowerCaseEmail,
             "password":password
         ]
         
@@ -63,6 +63,29 @@ class AuthService{
                 debugPrint(response.result.error as Any)
             }
             
+        }
+        
+    }
+    
+    func loginUser(email:String,password:String,completion: @escaping CompletionHandler){
+            let lowerCaseEmail = email.lowercased()
+        
+            let header = [
+                "Content-Type":"application/json; charset = uft-8"
+            ]
+        
+        let body:[String:Any] = [
+        "email":lowerCaseEmail,
+        "password":password
+        ]
+        
+        Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+            if response.result.error == nil{
+                completion(true)
+            }else{
+                print(response.result.error)
+                completion(false)
+            }
         }
         
     }

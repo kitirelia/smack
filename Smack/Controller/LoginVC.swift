@@ -7,9 +7,12 @@
 //
 
 import UIKit
+ 
 
 class LoginVC: UIViewController {
 
+    @IBOutlet weak var usernameTxt: UITextField!
+    @IBOutlet weak var passwordTxt: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,5 +28,24 @@ class LoginVC: UIViewController {
         performSegue(withIdentifier: TO_CREATE_ACCOUNT, sender: nil)
     }
     
+    @IBAction func loginPressed(_ sender: Any) {
+        
+        guard let username = usernameTxt.text , usernameTxt.text != ""
+        else{
+            return
+        }
+        guard let password = passwordTxt.text,passwordTxt.text != "" else {
+            return
+        }
+        
+        AuthService.instance.loginUser(email: username, password: password) { (result) in
+            if result{
+                print("login complete")
+            }else{
+                print("login fail!!")
+            }
+        }
+        
+    }
     
 }
