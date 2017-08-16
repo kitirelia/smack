@@ -208,7 +208,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Grw-Qi-3fr" userLabel="TF stack">
                                 <rect key="frame" x="62" y="180" width="250" height="86"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zRa-K2-T3P">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="waterloo@gmail.com" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zRa-K2-T3P">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -225,7 +225,7 @@
                                             <constraint firstAttribute="height" constant="5" id="bH2-DQ-3W3"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIE-wb-aKT">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIE-wb-aKT">
                                         <rect key="frame" x="0.0" y="49" width="250" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="cMX-AI-lGG"/>

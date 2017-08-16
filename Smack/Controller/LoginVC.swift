@@ -7,7 +7,7 @@
 //
 
 import UIKit
- 
+import SVProgressHUD
 
 class LoginVC: UIViewController {
 
@@ -38,11 +38,15 @@ class LoginVC: UIViewController {
             return
         }
         
+        SVProgressHUD.show()
         AuthService.instance.loginUser(email: username, password: password) { (result) in
             if result{
                 print("login complete")
+                SVProgressHUD.showSuccess(withStatus: "Login Success")
             }else{
                 print("login fail!!")
+                
+                SVProgressHUD.showError(withStatus: "Login Failed")
             }
         }
         

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CC360351CA1878037ED0565FCA944769'
+               BlueprintIdentifier = '2BE676D6E208BFCE81368A0EA8D40E3E'
                BlueprintName = 'StarscreamSocketIO'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'StarscreamSocketIO.framework'>

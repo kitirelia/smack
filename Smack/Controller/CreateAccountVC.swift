@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class CreateAccountVC: UIViewController {
 
@@ -36,11 +37,13 @@ class CreateAccountVC: UIViewController {
         guard let password = passwordTxt.text, passwordTxt.text != "" else{
             return
         }
-        
+        SVProgressHUD.show()
         AuthService.instance.registerUser(email: email, password: password) { (success) in
             if success{
+                SVProgressHUD.showSuccess(withStatus: "register success")
                 print("registered user!")
             }else{
+                SVProgressHUD.showError(withStatus: "register fail")
                 print("register user Error!")
             }
         }
