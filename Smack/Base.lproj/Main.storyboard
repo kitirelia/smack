@@ -107,7 +107,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" highlightedImage="dark0" translatesAutoresizingMaskIntoConstraints="NO" id="Zre-Of-KnD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" highlightedImage="dark0" translatesAutoresizingMaskIntoConstraints="NO" id="Zre-Of-KnD" customClass="CircleImage" customModule="Smack" customModuleProvider="target">
                                 <rect key="frame" x="17" y="575" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="G5D-PF-yh6"/>
@@ -208,7 +208,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Grw-Qi-3fr" userLabel="TF stack">
                                 <rect key="frame" x="62" y="180" width="250" height="86"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="waterloo@gmail.com" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zRa-K2-T3P">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="carson@gmail.com" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zRa-K2-T3P">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -405,7 +405,7 @@
                                     <action selector="pickAvatarPressed:" destination="Hna-aZ-ZJN" eventType="touchUpInside" id="rTh-vx-qQA"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="PC5-h9-0kb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="PC5-h9-0kb" customClass="CircleImage" customModule="Smack" customModuleProvider="target">
                                 <rect key="frame" x="137.5" y="343" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="U8u-qV-bOb"/>
@@ -440,6 +440,7 @@
                                 </state>
                                 <connections>
                                     <action selector="createAccountBtnPressed:" destination="EID-H1-b3y" eventType="touchUpInside" id="owL-yT-8Mh"/>
+                                    <action selector="generColorBtnPressed:" destination="Hna-aZ-ZJN" eventType="touchUpInside" id="t1t-ea-MmD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -466,7 +467,6 @@
                     <connections>
                         <outlet property="emailTxt" destination="oAs-qY-ArN" id="kl6-um-R0E"/>
                         <outlet property="passwordTxt" destination="NRa-zt-y7s" id="Vtg-VZ-Vut"/>
-                        <outlet property="pickBgColorPressed" destination="Hly-nn-WSa" id="BCo-Ny-NV9"/>
                         <outlet property="userImg" destination="PC5-h9-0kb" id="hcr-TA-yg7"/>
                         <outlet property="usernameTxt" destination="afJ-9P-Vwm" id="uv8-3A-zM6"/>
                         <segue destination="bDg-4h-qjk" kind="unwind" identifier="unwindToChannel" unwindAction="prepareForUnwindWithSegue:" id="5KD-oW-Kp3"/>
