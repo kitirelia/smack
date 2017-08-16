@@ -28,6 +28,7 @@ class CreateAccountVC: UIViewController {
     }
 
     @IBAction func pickAvatarPressed(_ sender: Any) {
+        performSegue(withIdentifier: TO_AVATAR_PICKER, sender: nil)
     }
     
     @IBAction func closePressed(_ sender: UIButton) {
@@ -65,11 +66,13 @@ class CreateAccountVC: UIViewController {
                         SVProgressHUD.showError(withStatus: "Error Add user")
                     }
                 })
-                print("registered user!")
             }else{
                 SVProgressHUD.showError(withStatus: "register fail")
                 print("register user Error!")
             }
         }
     }
+    
+    
+    
 }
