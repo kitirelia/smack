@@ -40,8 +40,9 @@ class LoginVC: UIViewController {
         
         SVProgressHUD.show()
         AuthService.instance.loginUser(email: username, password: password) { (result) in
+            SVProgressHUD.dismiss()
             if result{
-                print("login complete")
+                //print("login complete")
                 SVProgressHUD.showSuccess(withStatus: "Login Success")
             }else{
                 print("login fail!!")

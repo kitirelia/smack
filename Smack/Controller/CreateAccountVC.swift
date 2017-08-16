@@ -15,6 +15,12 @@ class CreateAccountVC: UIViewController {
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var userImg: UIImageView!
+    
+    //Variables
+    var avatarName = "profileDefault"
+    var avatarColor = "[0.5,0.5,0.5,1]"
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,7 +36,9 @@ class CreateAccountVC: UIViewController {
     @IBOutlet weak var pickBgColorPressed: UIButton!
     
     @IBAction func registerBtnPressed(_ sender: Any) {
-        
+        guard  let username = usernameTxt.text ,usernameTxt.text != "" else {
+            return
+        }
         guard  let email = emailTxt.text, emailTxt.text != "" else {
             return
         }
@@ -39,8 +47,24 @@ class CreateAccountVC: UIViewController {
         }
         SVProgressHUD.show()
         AuthService.instance.registerUser(email: email, password: password) { (success) in
+            SVProgressHUD.dismiss()
+            SVProgressHUD.show()
             if success{
                 SVProgressHUD.showSuccess(withStatus: "register success")
+                SVProgressHUD.dismiss()
+                SVProgressHUD.show()
+                AuthService.instance.createUser(name: username, email: email, avatarName: self.avatarName, avatarColor: self.avatarColor, completion:{(success) in
+                    SVProgressHUD.dismiss()
+                    if success{
+                        SVProgressHUD.showSuccess(withStatus: "Update User Success")
+                        
+                        SVProgressHUD.dismiss (completion: {
+                            self.performSegue(withIdentifier: UNWIND, sender: nil)
+                        })
+                    }else{
+                        SVProgressHUD.showError(withStatus: "Error Add user")
+                    }
+                })
                 print("registered user!")
             }else{
                 SVProgressHUD.showError(withStatus: "register fail")
