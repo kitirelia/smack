@@ -15,7 +15,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTxt: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupView()
         
     }
 
@@ -24,7 +24,6 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func createAccountBtnPressed(_ sender: UIButton) {
-        
         performSegue(withIdentifier: TO_CREATE_ACCOUNT, sender: nil)
     }
     
@@ -39,18 +38,29 @@ class LoginVC: UIViewController {
         }
         
         SVProgressHUD.show()
-        AuthService.instance.loginUser(email: username, password: password) { (result) in
+        AuthService.instance.loginUser(email: username, password: password) { (loginSuccess) in
             SVProgressHUD.dismiss()
-            if result{
-                //print("login complete")
-                SVProgressHUD.showSuccess(withStatus: "Login Success")
+            if loginSuccess{
+                AuthService.instance.findUserByEmail(completion: { (findByEmailSuccess) in
+                    if findByEmailSuccess{
+                        SVProgressHUD.showSuccess(withStatus: "Login Success")
+                        NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                        SVProgressHUD.dismiss(withDelay: 2, completion: {
+                            self.dismiss(animated: true, completion: nil)
+                        })
+                    }
+                })
             }else{
                 print("login fail!!")
                 
                 SVProgressHUD.showError(withStatus: "Login Failed")
             }
         }
-        
+    }
+    
+    func setupView(){
+        usernameTxt.attributedPlaceholder = NSAttributedString(string: "username", attributes: [NSAttributedStringKey.foregroundColor:smackPurplePlaceHolder])
+        passwordTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedStringKey.foregroundColor:smackPurplePlaceHolder])
     }
     
 }

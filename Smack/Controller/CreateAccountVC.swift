@@ -86,25 +86,24 @@ class CreateAccountVC: UIViewController {
             return
         }
         SVProgressHUD.show()
+        
         AuthService.instance.registerUser(email: email, password: password) { (success) in
-            SVProgressHUD.dismiss()
-            SVProgressHUD.show()
             if success{
-                SVProgressHUD.showSuccess(withStatus: "register success")
-                SVProgressHUD.dismiss()
-                SVProgressHUD.show()
-                print("sending avatar \(self.avatarColor)")
-                AuthService.instance.createUser(name: username, email: email, avatarName: self.avatarName, avatarColor: self.avatarColor, completion:{(success) in
-                    SVProgressHUD.dismiss()
-                    if success{
-                        SVProgressHUD.showSuccess(withStatus: "Update User Success")
-                        
-                        SVProgressHUD.dismiss (completion: {
-                            NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
-                            self.performSegue(withIdentifier: UNWIND, sender: nil)
+                AuthService.instance.loginUser(email: email, password: password, completion: { (loginSuccss) in
+                    if loginSuccss{
+                        AuthService.instance.createUser(name: username, email: email, avatarName: self.avatarName, avatarColor: self.avatarColor, completion: { (addUserSucess) in
+                            if addUserSucess{
+                                SVProgressHUD.showSuccess(withStatus: "Update User Success")
+                                
+                                SVProgressHUD.dismiss (completion: {
+                                    NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                                    self.performSegue(withIdentifier: UNWIND, sender: nil)
+                                })
+                            }else{
+                                SVProgressHUD.showError(withStatus: "Error Add user")
+                            }
                         })
-                    }else{
-                        SVProgressHUD.showError(withStatus: "Error Add user")
+                        
                     }
                 })
             }else{
