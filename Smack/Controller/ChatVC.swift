@@ -24,6 +24,9 @@ class ChatVC: UIViewController {
         
         if AuthService.instance.isLoggedIn{
             AuthService.instance.findUserByEmail(completion: { (success) in
+                print("-- token --")
+                print("Bearer \(AuthService.instance.authToken)")
+                print("-----------")
                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
             })
         }

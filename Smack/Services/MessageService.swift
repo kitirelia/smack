@@ -38,4 +38,16 @@ class MessageService{
         }
     }
     
+    func dummyData()->[Channel]{
+        var dummy = [Channel]()
+        dummy.append(Channel(channelTitle: "arsenal", channelDescription: "arsenal desc", id: "01"))
+        dummy.append(Channel(channelTitle: "liverpool", channelDescription: "liverpool desc", id: "02"))
+        dummy.append(Channel(channelTitle: "everton", channelDescription: "everton desc", id: "03"))
+        dummy.append(Channel(channelTitle: "westham", channelDescription: "westham utd desc", id: "04"))
+        dummy.append(Channel(channelTitle: "crystal palace", channelDescription: "crystal palace desc", id: "05"))
+        dummy.append(Channel(channelTitle: "millwall", channelDescription: "millwall desc", id: "06"))
+        
+        return dummy
+    }
+    
 }
