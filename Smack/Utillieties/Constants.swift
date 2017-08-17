@@ -19,6 +19,7 @@ let URL_LOGIN = "\(BASE_URL)account/login"
 let URL_USER_ADD = "\(BASE_URL)user/add"
 let URL_USER_BY_EMAIL = "\(BASE_URL)user/byEmail/\(AuthService.instance.userEmail)"
 let URL_GET_CHANNEL = "\(BASE_URL)channel"
+let URL_GET_MESSAGES = "\(BASE_URL)message/byChannel"
 
 // Segues
 let TO_LOGIN = "toLogin"

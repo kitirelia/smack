@@ -16,13 +16,12 @@ class MessageService{
     
     var channels = [Channel]()
     var selectedChannel:Channel?
+    var messages = [Message]()
     
     func findAllChannel(completion:@escaping CompletionHandler){
         
         Alamofire.request(URL_GET_CHANNEL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
-            
             if response.result.error == nil{
-                
                 guard let data = response.data else {return}
                 if let json = JSON(data:data).array{
                     for item in json{
@@ -43,20 +42,43 @@ class MessageService{
         }
     }
     
-    func dummyData()->[Channel]{
-        var dummy = [Channel]()
-        dummy.append(Channel(channelTitle: "arsenal", channelDescription: "arsenal desc", id: "01"))
-        dummy.append(Channel(channelTitle: "liverpool", channelDescription: "liverpool desc", id: "02"))
-        dummy.append(Channel(channelTitle: "everton", channelDescription: "everton desc", id: "03"))
-        dummy.append(Channel(channelTitle: "westham", channelDescription: "westham utd desc", id: "04"))
-        dummy.append(Channel(channelTitle: "crystal palace", channelDescription: "crystal palace desc", id: "05"))
-        dummy.append(Channel(channelTitle: "millwall", channelDescription: "millwall desc", id: "06"))
+    func findAllMessagesForChannel(channelId:String,completion:@escaping CompletionHandler){
         
-        return dummy
+        Alamofire.request(("\(URL_GET_MESSAGES)\(channelId)"), method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+            if response.result.error == nil{
+                self.clearMessages()
+                
+                guard let data = response.data else {return}
+                if let json = JSON(data:data).array{
+                    for item in json{
+                        let messageBody = item["messageBody"].stringValue
+                        let channelId = item["channelId"].stringValue
+                        let id = item["_id"].stringValue
+                        let userName  = item["userName"].stringValue
+                        let userAvatar = item["userAvatar"].stringValue
+                        let userAvatarColor = item["userAvatarColor"].stringValue
+                        let timeStamp = item["timeStamp"].stringValue
+                        
+                        let message = Message(message: messageBody, userName: userName, channelId: channelId, userAvatar: userAvatar, userAvatarColor: userAvatarColor, id: id, timeStamp: timeStamp)
+                        self.messages.append(message)
+                    }
+                    completion(true)
+                }
+                
+            }else{
+                debugPrint(response.result.error as Any)
+                completion(false)
+            }
+        }
+        
+    }
+    
+    func clearMessages(){
+        messages.removeAll()
     }
     
     func clearChannels(){
         channels.removeAll()
     }
     
-}
+}//end class
