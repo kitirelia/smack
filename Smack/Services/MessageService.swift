@@ -43,8 +43,10 @@ class MessageService{
     }
     
     func findAllMessagesForChannel(channelId:String,completion:@escaping CompletionHandler){
-        
-        Alamofire.request(("\(URL_GET_MESSAGES)\(channelId)"), method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+//        print("start find all message")
+//        print("\(URL_GET_MESSAGES)/\(channelId)")
+//        print(BEARER_HEADER)
+        Alamofire.request(("\(URL_GET_MESSAGES)/\(channelId)"), method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             if response.result.error == nil{
                 self.clearMessages()
                 
@@ -62,6 +64,7 @@ class MessageService{
                         let message = Message(message: messageBody, userName: userName, channelId: channelId, userAvatar: userAvatar, userAvatarColor: userAvatarColor, id: id, timeStamp: timeStamp)
                         self.messages.append(message)
                     }
+                    print(self.messages)
                     completion(true)
                 }
                 

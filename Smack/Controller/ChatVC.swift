@@ -12,16 +12,27 @@ class ChatVC: UIViewController {
 
     //Outlet
     
+    @IBOutlet weak var messageTxt: UITextField!
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var channelNameLbl: UILabel!
     
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.bindToKeyboard()
+        
+        tableView.delegate = self 
+        tableView.dataSource = self
+        
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ChatVC.handleTap))
+        view.addGestureRecognizer(tap)
         
         NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.userDataDidChange(_:)),name:NOTIF_USER_DATA_DID_CHANGE  ,object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.channelSelected), name: NOTIF_CHANNEL_SELECTED, object: nil)
@@ -35,11 +46,14 @@ class ChatVC: UIViewController {
         }
     }
     
+    @objc func handleTap(){
+        view.endEditing(true)
+    }
+    
     @objc func channelSelected(_ notif:Notification){
        updateWithChannel()
     }
     @objc func userDataDidChange(_ notif:Notification){
-        print("ChatVC observer")
         if AuthService.instance.isLoggedIn{
             onLoginGetMessages()
         }else{
@@ -50,7 +64,20 @@ class ChatVC: UIViewController {
     func updateWithChannel(){
         let channelName = MessageService.instance.selectedChannel?.channelTitle ?? ""
         channelNameLbl.text = "#\(channelName)"
-        
+        getMessages()
+    }
+    @IBAction func sendMessagePressed(_ sender: Any) {
+        if AuthService.instance.isLoggedIn{
+            guard let channelId = MessageService.instance.selectedChannel?.id else {return}
+            guard let message = messageTxt.text,messageTxt.text != "" else {return}
+            
+            SocketService.instance.addMessage(messageBody: message, userId: UserDataService.instance.id, channelId: channelId, completion: { (success) in
+                if success{
+                    self.messageTxt.text = ""
+                    self.messageTxt.resignFirstResponder()
+                }
+            })
+        }
     }
     
     func onLoginGetMessages(){
@@ -73,9 +100,29 @@ class ChatVC: UIViewController {
         MessageService.instance.findAllMessagesForChannel(channelId: channelId) { (success) in
             if success{
                 // load request
+                self.tableView.reloadData()
             }
         }
     }
    
 
 }
+extension ChatVC:UITableViewDelegate{
+    
+}
+
+extension ChatVC:UITableViewDataSource{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? MessageCell{
+            let message = MessageService.instance.messages[indexPath.row]
+            cell.configureCell(message: message)
+            return cell
+        }else{
+            return MessageCell()
+        }
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MessageService.instance.messages.count
+    }
+}
+
