@@ -28,14 +28,16 @@ class ChatVC: UIViewController {
                 print("Bearer \(AuthService.instance.authToken)")
                 print("-----------")
                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                
+                MessageService.instance.findAllChannel(completion: { (success) in
+                    if success{
+                       // print(MessageService.instance.channels)
+                    }
+                })
             })
         }
         
-        MessageService.instance.findAllChannel(completion: { (success) in
-            if success{
-                print(MessageService.instance.channels)
-            }
-        })
+        
         
     }
 
