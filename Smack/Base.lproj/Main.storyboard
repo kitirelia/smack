@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-BookOblique</string>
+        </array>
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
             <string>HelveticaNeue-Bold</string>
@@ -148,9 +151,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="typing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWa-TT-B4a">
+                                <rect key="frame" x="8" y="605.5" width="31.5" height="15.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-BookOblique" family="Avenir" pointSize="11"/>
+                                <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="uJw-Xb-c3D" firstAttribute="top" secondItem="RWa-TT-B4a" secondAttribute="bottom" constant="6" id="3TP-6k-8SE"/>
                             <constraint firstItem="T6v-9Q-Gco" firstAttribute="top" secondItem="mHU-gg-Sg2" secondAttribute="top" id="429-fJ-QXs"/>
                             <constraint firstItem="zu5-Xg-gqI" firstAttribute="leading" secondItem="uJw-Xb-c3D" secondAttribute="leading" id="8e1-oN-ufP"/>
                             <constraint firstItem="FBG-hZ-Klw" firstAttribute="trailing" secondItem="uJw-Xb-c3D" secondAttribute="trailing" id="90K-o3-lTc"/>
@@ -159,6 +169,7 @@
                             <constraint firstItem="G1W-I8-kZG" firstAttribute="centerY" secondItem="uJw-Xb-c3D" secondAttribute="centerY" id="E38-Gm-ySV"/>
                             <constraint firstItem="FBG-hZ-Klw" firstAttribute="bottom" secondItem="uJw-Xb-c3D" secondAttribute="bottom" id="J2j-CX-tHV"/>
                             <constraint firstItem="uJw-Xb-c3D" firstAttribute="leading" secondItem="FBG-hZ-Klw" secondAttribute="leading" id="KUz-mg-tvd"/>
+                            <constraint firstItem="RWa-TT-B4a" firstAttribute="leading" secondItem="FBG-hZ-Klw" secondAttribute="leading" constant="8" id="SDk-hf-puD"/>
                             <constraint firstItem="FBG-hZ-Klw" firstAttribute="trailing" secondItem="T6v-9Q-Gco" secondAttribute="trailing" id="buK-AF-FgR"/>
                             <constraint firstItem="FBG-hZ-Klw" firstAttribute="trailing" secondItem="G1W-I8-kZG" secondAttribute="trailing" constant="8" id="c33-kS-Xyv"/>
                             <constraint firstItem="zu5-Xg-gqI" firstAttribute="trailing" secondItem="uJw-Xb-c3D" secondAttribute="trailing" id="hY8-hr-gYm"/>
@@ -172,6 +183,7 @@
                         <outlet property="messageTxt" destination="uJw-Xb-c3D" id="f87-4u-FNe"/>
                         <outlet property="sendBtn" destination="G1W-I8-kZG" id="wOo-5V-pbr"/>
                         <outlet property="tableView" destination="zu5-Xg-gqI" id="lyc-Sn-VfO"/>
+                        <outlet property="typingUserLbl" destination="RWa-TT-B4a" id="xvs-Im-n08"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4W-FU-yPE" userLabel="First Responder" sceneMemberID="firstResponder"/>
